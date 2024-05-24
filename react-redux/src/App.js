@@ -1,23 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
 
+import './App.css';
+import { useSelector } from 'react-redux';
 function App() {
+  const counter =useSelector((state)=>state.counter);
+  const name =useSelector((state)=>state.name);
+  const title =useSelector((state)=>state.title);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+       <div>
+         <h1>{title}</h1>
+         <h3>{name}</h3>
+         <p>{counter}</p>
+       </div>
     </div>
   );
 }
