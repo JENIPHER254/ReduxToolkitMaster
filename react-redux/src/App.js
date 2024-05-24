@@ -1,17 +1,27 @@
-
-import './App.css';
-import { useSelector } from 'react-redux';
+import "./App.css";
+import { useSelector, useDispatch } from "react-redux";
 function App() {
-  const counter =useSelector((state)=>state.counter);
-  const name =useSelector((state)=>state.name);
-  const title =useSelector((state)=>state.title);
+  const counter = useSelector((state) => state.counter);
+  const name = useSelector((state) => state.name);
+  const title = useSelector((state) => state.title);
+  const dispatch = useDispatch();
+
+  const increment = () => {
+    dispatch({ type: "INC" });
+  };
+  const decrement = () => {
+    dispatch({ type: "DEC" });
+  };
+
   return (
     <div>
-       <div>
-         <h1>{title}</h1>
-         <h3>{name}</h3>
-         <p>{counter}</p>
-       </div>
+      <div>
+        <h1>{title}</h1>
+        <h3>{name}</h3>
+        <p>{counter}</p>
+        <button onClick={increment}>increment</button>
+        <button onClick={decrement}>decrement</button>
+      </div>
     </div>
   );
 }
