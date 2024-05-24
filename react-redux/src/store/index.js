@@ -20,6 +20,13 @@ const reducerFn = (
       title: "ITEM HAS DECREASED",
     };
   }
+  if (action.type === "ADD") {
+    return {
+      counter: state.counter + action.payload,
+      name: state.name,
+      title: "ITEM HAS INCREASED BY "+ action.payload,
+    };
+  }
   return state;
 };
 
