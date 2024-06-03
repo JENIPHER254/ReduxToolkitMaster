@@ -1,20 +1,24 @@
 import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
+import { increment, decrement } from "./store";
+import { addBy } from "./store";
 function App() {
   //useSelector requires a callback function e.g. (state) => state.counter
-  const counter = useSelector((state) => state.counter);
+  const counter = useSelector((state) => state.counter.counter);
+  const counter1 = useSelector((state) => state.counter1.counter);
   const name = useSelector((state) => state.name);
   const title = useSelector((state) => state.title);
   const dispatch = useDispatch();
 
-  const increment = () => {
-    dispatch({ type: "INC" });
+  const handleIncrement = () => {
+    dispatch(increment());
   };
-  const decrement = () => {
-    dispatch({ type: "DEC" });
+  const handleDecrement = () => {
+    dispatch(decrement());
   };
   const addBy10 = () => {
-    dispatch({ type: "ADD",payload:10 });
+   dispatch(addBy(10));
+   
   };
 
   return (
@@ -23,8 +27,9 @@ function App() {
         <h1>{title}</h1>
         <h3>{name}</h3>
         <p>{counter}</p>
-        <button onClick={increment}>increment</button>
-        <button onClick={decrement}>decrement</button>
+        <p>{counter1}</p>
+        <button onClick={handleIncrement}>increment</button>
+        <button onClick={handleDecrement}>decrement</button>
         <button onClick={addBy10}>Add by 10</button>
       </div>
     </div>

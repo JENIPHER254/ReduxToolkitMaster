@@ -1,34 +1,35 @@
-import { createStore } from "redux";
+//import configure store from redux toolkit
+import { configureStore, createSlice } from "@reduxjs/toolkit";
 
-const reducerFn = (
-  state = { counter: 0, name: "Jenipher", title: "Learning React" },
-  action
-) => {
-  // Do not mutate original state
-  // Use async functions
-  if (action.type === "INC") {
-    return {
-      counter: state.counter + 1,
-      name: state.name,
-      title: "ITEM HAS INCREASED",
-    };
-  }
-  if (action.type === "DEC") {
-    return {
-      counter: state.counter - 1,
-      name: state.name,
-      title: "ITEM HAS DECREASED",
-    };
-  }
-  if (action.type === "ADD") {
-    return {
-      counter: state.counter + action.payload,
-      name: state.name,
-      title: "ITEM HAS INCREASED BY "+ action.payload,
-    };
-  }
-  return state;
-};
-
-const store = createStore(reducerFn);
+// create slice
+const counterSlice = createSlice({
+  name: "counter",
+  initialState: { counter: 0 },
+  reducers: {
+    increment(state, action) {
+      state.counter++;
+    },
+    decrement(state, action) {
+      state.counter--;
+    },
+  },
+});
+// create slice
+const counter1Slice = createSlice({
+  name: "counter1",
+  initialState: { counter: 0 },
+  reducers: {
+    addBy(state, action) {
+      state.counter += action.payload;
+    },
+  },
+});
+export const { increment, decrement } = counterSlice.actions;
+export const { addBy } = counter1Slice.actions;
+const store = configureStore({
+  reducer: {
+    counter: counterSlice.reducer,
+    counter1: counter1Slice.reducer,
+  },
+});
 export default store;
