@@ -1,6 +1,7 @@
 import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
 function App() {
+  //useSelector requires a callback function e.g. (state) => state.counter
   const counter = useSelector((state) => state.counter);
   const name = useSelector((state) => state.name);
   const title = useSelector((state) => state.title);
